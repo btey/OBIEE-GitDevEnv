@@ -3,7 +3,7 @@ OBIEE Development Environment to work with GIT and GitFlow
 
 ## Introduction
 
-In different sites they talk about the advantage of working with Git in the development of projects with OBIEE. Some give some details about how they implement their development flow, but none ends up giving specific details on how to implement it. I hope that this will help those who work in the singular world of Oracle, and even more in Oracle Business Intelligence. The following method is the one I have used (and still use) in my years as an OBIEE developer.
+In different sites they talk about the advantage of working with Git in the development of projects with OBIEE. Some give some details about how they implement their development flow, but only one (Rittman Mead) ends up giving specific details on how to implement it. The following method is more simple that Rittman Mead uses and focuses on the development of the RPD. I hope that this will help those who work in the singular world of Oracle, and even more in Oracle Business Intelligence. The following method is the one I have used (and still use) in my years as an OBIEE developer.
 
 ## Work tools
 
@@ -87,3 +87,4 @@ The ```Scripts``` folder must contains the following files:
 Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` check the commands list you can use to administer a repository. See the folder ```Scripts``` to get an example file for a project called "BankInsights".
 
 
+[This readme currently is on "work in progress"]
