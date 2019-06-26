@@ -284,5 +284,19 @@ $ git config mergetool.Auto.trustExitCode false
 $ git config mergetool.keepBackup false
 ```
 
+- Check the changes in the git config file:
+
+```
+[merge]
+        tool = AdminTool
+[mergetool "AdminTool"]
+        cmd = C:/Users/btey/Documents/Git-Repos/OBIEE_Scripts/Scripts/MergeDEC.cmd
+        trustExitCode = false
+[mergetool "Auto"]
+        cmd = C:/Users/btey/Documents/Git-Repos/OBIEE_Scripts/Scripts/Merge.cmd
+        trustExitCode = false
+[mergetool]
+        keepBackup = false
+```
 
 [This readme currently is on "work in progress"]
