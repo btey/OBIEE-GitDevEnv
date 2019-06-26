@@ -48,6 +48,42 @@ On your private git server create a new repository where you save all the script
 * Release Notes (Latest tag)
 * Upload RPD
 
+### Setup environment variables
 
+The above scripts need certain environment variables to work. In Windows 10 you can add them by following these steps:
+
+* Open a window Explorer.
+* Right click on "This PC" and select the "Properties" option.
+* In the System window, select the "Advanced System Settings" option.
+* In the System Properties window, Advanced Tab, click on the "Environment variables" button.
+
+Then add the following variables:
+
+| Variable          | Value (this are examples)               | Description                    |
+|-------------------|-----------------------------------------|--------------------------------|
+| OBIEE_CLIENT_HOME | C:\Oracle\Middleware\OracleBI12c_122130 | Path of the Admintool client   |
+| OBIEE_GIT_REPOS   | C:\Git-Repos                            | Path of the git repositories   |
+| OBIEE_SERVER      | 192.168.56.103                          | OBIEE Server IP (your sandbox) |
+
+### Basic folder structure of an OBIEE project
+
+The following folder structure is necessary in each OBIEE project in order for the scripts to work correctly:
+
+```
+C:\Git-Repos\PROJECT_NAME\Scripts
+C:\Git-Repos\PROJECT_NAME\RPD_NAME.rpd
+```
+
+The ```Scripts``` folder must contains the following files:
+
+| File                    | Description                             | Content               |
+|-------------------------|-----------------------------------------|-----------------------|
+| AdminToolMerge.txt      | Commands for the complete merge process | Same for all projects |
+| AdminToolMergeDEC.txt   | Commands for the initial merge process  | Same for all projects |
+| repository_filename.txt | RPD filename                            | Project specific      |
+| repository_name.txt     | PROJECT_NAME                            | Project specific      |
+| xcopy.txt               | Custom parameter for xcopy command      | Same for all projects |
+
+Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` check the commands list you can use to administer a repository. See the folder ```Scripts``` to get an example file for a project called "BankInsights".
 
 
