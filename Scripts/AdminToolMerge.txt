@@ -1,0 +1,5 @@
+OpenOffline C:\Temp-Merge\current.rpd Admin123
+Merge C:\Temp-Merge\original.rpd C:\Temp-Merge\modified.rpd Admin123 Admin123
+SaveAs C:\Temp-Merge\merge.rpd
+Close
+Exit
