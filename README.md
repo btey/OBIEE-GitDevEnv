@@ -329,6 +329,6 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 
 This is the main reason why I use Git in OBIEE, not only for version control, but to work in parallel (concurrent development) with other developers in the same RPD. Let's see how it would work with several features at once:
 
-- 
+- Create the first feature and name it as "Table A"
 
 [This readme currently is on "work in progress"]
