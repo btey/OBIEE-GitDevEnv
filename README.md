@@ -225,9 +225,9 @@ Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` che
 
 ## RPD workflow with SourceTree and GitFlow
 
-Note: If you don't know the GitFlow wotkflow, read the following resource from [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
+Note: If you don't know the GitFlow workflow, read the following resource from [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
-### Initial setup of a new project BankInsight
+### Initial setup of a new project "BankInsight"
 
 #### 1. Create new repository from SourceTree
 
@@ -254,7 +254,7 @@ Note: If you don't know the GitFlow wotkflow, read the following resource from [
 - Save the RPD
 - Close Admintool
 
-#### 4. Add RPD and specific project scripts to git control
+#### 4. Add RPD and specific project scripts to git
 
 - Go to SourceTree and select the new repository "BankInsight"
 - Select "Stage All" to add all the files and folders to "Staged files"
@@ -263,7 +263,7 @@ Note: If you don't know the GitFlow wotkflow, read the following resource from [
 
 #### 5. Enable GitFlow for this repository
 
-- The initial setup and commit create the default "master" branch.
+- The initial setup and previous commit has been created the default "master" branch.
 - Go to the SourceTree toolbar, and clic the button "Git-flow".
 - In the new window "Initialise repository for Git-flow", use the default options.
 - Clic OK.
@@ -298,5 +298,37 @@ $ git config mergetool.keepBackup false
 [mergetool]
         keepBackup = false
 ```
+
+#### 7. Test a basic custom action from SourceTree
+
+- Select the first commit (double clic).
+- Right mouse button, Custom Actions, Open RPD.
+- SourceTree displays a window indicating that it is executing the custom action.
+- Then Admintool opens with the RPD corresponding to the current commit in SourceTree.
+- Close Admintool.
+- The SourceTree window for the custom action executed closes.
+
+### Example workflow with GitFlow
+
+#### 1. The first feature
+
+The idea is to use Git's own client, SourceTree, as much as possible. To start we will create a new feature by adding something simple, we will save it and close the new feature.
+
+- From SourceTree, clic Git-flow and select the option "Start New Feature".
+- Set the feature name, for example, "New DB and connection pool" and clic Ok.
+- Select the latest commit and open the RPD with the custom action.
+- From Admintool, create a new database and connection pool for general queries and other for initblocks.
+- Save changes and close Admintool.
+- From SourceTree, now appear an uncommit change.
+- Select this uncommit line, stage the RPD, and clic "Commit" from the toolbar.
+- Put a comment for this commit and clic commit.
+- If you select now the created feature (from the sidebar) you will see the saved commit.
+- Now finish the feature, clic Git-Flow and select "Finish Feature" and clic Ok.
+
+#### 2. Two features in concurrent development
+
+This is the main reason why I use Git in OBIEE, not only for version control, but to work in parallel (concurrent development) with other developers in the same RPD. Let's see how it would work with several features at once:
+
+- 
 
 [This readme currently is on "work in progress"]
