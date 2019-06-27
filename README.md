@@ -330,5 +330,65 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 This is the main reason why I use Git in OBIEE, not only for version control, but to work in parallel (concurrent development) with other developers in the same RPD. Let's see how it would work with several features at once:
 
 - Create the first feature and name it as "Table A"
+- Open the RPD from SourceTree with the custom action
+- Create TABLE_A with one column ID_PK
+- Save changes
+- Commit changes in SourceTree
+- Create the second feature (Git-flow > Other actions > Start New Feature) and name it as "Table B"
+- Open the RPD from SourceTree with the custom action
+- Every new feature start from the develop branch. Therefore, the previous TABLE_A does not exist in this new feature.
+- Create TABLE_B with one column ID_PK
+- Save changes
+- Commit changes in SourceTree
+
+Now I have two different branches with their respective changes (TABLE_A and TABLE_B). In concurrent development we have two or more developers each working on a different change. Once one of them ends and it is ok, the next step is to integrate it into the development branch without interfering with what the other developer is doing. In this case, the first to integrate their changes in the development branch may do so automatically.
+
+- Select the branch "Table A" (double clic in the sidebar)
+- Clic "Git-flow" in the toolbar
+- Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table A"
+- Press Ok button
+
+The branch "Table A" has been integrated (and deleted) into the branch "develop". Now I can open the RPD with the custom action, review the changes and confirm the presence of the new "TABLE_A".
+
+The next steep is integrate the branch "Table B" into the branch "develop". The process is the same, double clic into the branch "Table B" (from the sidebar), clic "Git-flow" (from the toolbar) and select the option "Finish Feature" and confirm with Ok. But the git merge process knows that before there has been a previous merge commit that should not be lost. If the RPD was a plain text file Git could see the difference and if it does not find conflicts do the merge automatically. But the RPD is a binary. In this case, Git will tell us that there is a conflict that must be resolved.
+
+- Select the branch "Table B" (double clic in the sidebar)
+- Clic "Git-flow" in the toolbar
+- Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table B"
+- Press Ok button
+
+SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see "(develop|MERGING)". This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
+
+The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict:
+
+- Clic "Terminal" button in the toolbar
+- In the terminal window put the command:
+
+```
+$ git mergetool
+```
+
+We are telling Git to give us the necessary files to resolve the conflict and execute the script that we have indicated in the configuration. The terminal window show this:
+
+```
+btey@BTEY10 MINGW64 ~/Documents/Git-Repos/BankInsight (develop|MERGING)
+$ git mergetool
+Merging:
+BankInsight.rpd
+
+Normal merge conflict for 'BankInsight.rpd':
+  {local}: modified file
+  {remote}: modified file
+```
+
+The rest of the lines that appear in the terminal are the commands executed in the script that we have indicated in the configuration. If I check the project folder I will see that Git has returned 4 RPD files: BASE, LOCAL, REMOTE and BACKUP. These four files correspond to:
+
+| Admintool    | Git        |
+|--------------|------------|
+| original RPD | BASE.rpd   |
+| modified RPD | LOCAL.rpd  |
+| current  RPD | REMOTE.rpd |
+
+The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured. Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files.
 
 [This readme currently is on "work in progress"]
