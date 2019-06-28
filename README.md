@@ -220,7 +220,7 @@ The ```Scripts``` folder must contains the following files:
 | repository_name.txt     | PROJECT_NAME                            | Project specific      |
 | xcopy.txt               | Custom parameter for xcopy command      | Same for all projects |
 
-Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` check the commands list you can use to administer a repository. See the folder ```Scripts``` to get an example file for a project called "BankInsights".
+Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` check the commands list you can use to administer a repository ( [Commands List](https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/Admintool_Commands.md) ). See the folder ```Scripts``` to get an example file for a project called "BankInsights".
 
 
 ## 4. RPD workflow with SourceTree and GitFlow
