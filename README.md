@@ -1,11 +1,11 @@
 # OBIEE-GitDevEnv
 OBIEE Development Environment to work with GIT and GitFlow
 
-## Introduction
+## 1. Introduction
 
 In different sites they talk about the advantage of working with Git in the development of projects with OBIEE. Some give some details about how they implement their development flow, but only one ([Rittman Mead](https://github.com/RittmanMead/obi-concurrent-develop)) ends up giving specific details on how to implement it. The following method is more simple that Rittman Mead uses and focuses on the development of the RPD. I hope that this will help those who work in the singular world of Oracle, and even more in Oracle Business Intelligence. The following method is the one I have used (and still use) in my years as an OBIEE developer.
 
-## Work tools
+## 2. Work tools
 
 OBIEE only has one development client for Windows platform. I hope that one day, as a Linux user, Oracle will come to deliver a version for Linux. Although some time ago, speaking with an Oracle representative, he commented that they were working on a version of RPD based on the Oracle database. We will see if one day it becomes a reality, and if it works.
 
@@ -18,9 +18,9 @@ Server tools:
 
 * Private Git server (GitLab)
 
-## Configuring the work environment
+## 3. Configuring the work environment
 
-### Setup your main git repository paths
+### 3.1 Setup your main git repository paths
 
 Choose a path for the Git repositories, for example "C:\Git-Repos" (avoid use a path with blank spaces, here we will clone all the projects), and choose another temporary path where the merges will be compiled between different versions:
 
@@ -28,7 +28,7 @@ Choose a path for the Git repositories, for example "C:\Git-Repos" (avoid use a 
 c:\Git-Repos [contains all cloned repositories]
 c:\Temp-Merge [temp path for merges]
 ```
-### Setup a git repo for all the OBIEE scripts
+### 3.2 Setup a git repo for all the OBIEE scripts
 
 On your private git server create a new repository where you save all the scripts. Any subsequent change can be easily updated in all work teams. This scripts are in the folder ```OBIEE_Scripts``` and contain the following scripts:
 
@@ -48,7 +48,7 @@ On your private git server create a new repository where you save all the script
 * Release Notes (Latest tag)
 * Upload RPD
 
-### Setup environment variables
+### 3.3 Setup environment variables
 
 The above scripts need certain environment variables to work. In Windows 10 you can add them by following these steps:
 
@@ -65,11 +65,11 @@ Then add the following variables:
 | OBIEE_GIT_REPOS   | C:\Git-Repos                            | Path of the git repositories   |
 | OBIEE_SERVER      | 192.168.56.103                          | OBIEE Server IP (your sandbox) |
 
-### Setup custom actions for use with SourceTree
+### 3.4 Setup custom actions for use with SourceTree
 
 The above scripts must be added as custom actions inside SourceTree. Follow these steps for each script and go to Tools > Options > Custom Actions. From there we will create the following actions:
 
-#### Abort Merge
+#### 3.4.1 Abort Merge
 
 ```
 Menu Caption: Abort Merge
@@ -80,7 +80,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\AbortMerge.cmd
 Parameters: 
 ```
 
-#### Compare A > B
+#### 3.4.2 Compare A > B
 
 ```
 Menu Caption: Compare A > B
@@ -91,7 +91,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\CompareAB.cmd
 Parameters: 
 ```
 
-#### Compare B > A
+#### 3.4.3 Compare B > A
 
 ```
 Menu Caption: Compare B > A
@@ -102,7 +102,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\CompareBA.cmd
 Parameters: 
 ```
 
-#### Set Compare A
+#### 3.4.4 Set Compare A
 
 ```
 Menu Caption: Set Compare A
@@ -113,7 +113,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\SetCompareA.cmd
 Parameters:
 ```
 
-#### Set Compare B
+#### 3.4.5 Set Compare B
 
 ```
 Menu Caption: Set Compare B
@@ -124,7 +124,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\SetCompareB.cmd
 Parameters:
 ```
 
-#### Download RPD
+#### 3.4.6 Download RPD
 
 ```
 Menu Caption: Download RPD
@@ -135,7 +135,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\Download.cmd
 Parameters:
 ```
 
-#### Open RPD
+#### 3.4.7 Open RPD
 
 ```
 Menu Caption: Open RPD
@@ -146,7 +146,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\OpenRPD.cmd
 Parameters:
 ```
 
-#### Release Notes
+#### 3.4.8 Release Notes
 
 ```
 Menu Caption: Release Notes
@@ -157,7 +157,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ReleaseNotes.cmd
 Parameters:
 ```
 
-#### Release Notes (All)
+#### 3.4.9 Release Notes (All)
 
 ```
 Menu Caption: Release Notes (All)
@@ -168,7 +168,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ReleaseNotesAll.cmd
 Parameters:
 ```
 
-#### Release Notes (All details)
+#### 3.4.10 Release Notes (All details)
 
 ```
 Menu Caption: Release Notes (All Details)
@@ -179,7 +179,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ReleaseNotesAllDetails.cmd
 Parameters:
 ```
 
-#### Release Notes (Last TAG)
+#### 3.4.11 Release Notes (Last TAG)
 
 ```
 Menu Caption: Release Notes (Last TAG)
@@ -190,7 +190,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ReleaseNotesLastestTag.cmd
 Parameters:
 ```
 
-#### Upload RPD
+#### 3.4.12 Upload RPD
 
 ```
 Menu Caption: Upload RPD
@@ -201,7 +201,7 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\Upload.cmd
 Parameters:
 ```
 
-### Basic folder structure of an OBIEE project
+### 3.5 Basic folder structure of an OBIEE project
 
 The following folder structure is necessary in each OBIEE project in order for the scripts to work correctly:
 
@@ -223,25 +223,25 @@ The ```Scripts``` folder must contains the following files:
 Note: for the files ```AdminToolMerge.txt``` and ```AdminToolMergeDEC.txt``` check the commands list you can use to administer a repository. See the folder ```Scripts``` to get an example file for a project called "BankInsights".
 
 
-## RPD workflow with SourceTree and GitFlow
+## 4. RPD workflow with SourceTree and GitFlow
 
 Note: If you don't know the GitFlow workflow, read the following resource from [Atlassian](https://www.atlassian.com/git/tutorials/comparing-workflows/gitflow-workflow).
 
-### Initial setup of a new project "BankInsight"
+### 4.1 Initial setup of a new project "BankInsight"
 
-#### 1. Create new repository from SourceTree
+#### 4.1.1 Create new repository from SourceTree
 
 - Destination path: C:\Users\btey\Documents\Git-Repos\BankInsight
 - Name: BankInsight
 - Type: Git
 
-#### 2. Setup ```Scripts``` folder
+#### 4.1.2 Setup ```Scripts``` folder
 
 - Copy the example folder ```Scripts```
 - Edit the file ```Scripts\repository_filename.txt``` with the text "BankInsight.rpd".
 - Edit the file ```Scripts\repository_name.txt``` with the text "BankInsight".
 
-#### 3. Create an empty RPD
+#### 4.1.3 Create an empty RPD
 
 - Open Admintool
 - File > New repository
@@ -254,14 +254,14 @@ Note: If you don't know the GitFlow workflow, read the following resource from [
 - Save the RPD
 - Close Admintool
 
-#### 4. Add RPD and specific project scripts to git
+#### 4.1.4 Add RPD and specific project scripts to git
 
 - Go to SourceTree and select the new repository "BankInsight"
 - Select "Stage All" to add all the files and folders to "Staged files"
 - Set a comment, for example, "Init setup"
 - Commit the changes
 
-#### 5. Enable GitFlow for this repository
+#### 4.1.5 Enable GitFlow for this repository
 
 - The initial setup and previous commit has been created the default "master" branch.
 - Go to the SourceTree toolbar, and clic the button "Git-flow".
@@ -269,7 +269,7 @@ Note: If you don't know the GitFlow workflow, read the following resource from [
 - Clic OK.
 - The new "develop" branch is created.
 
-#### 6. Setup the scripts to resolve conflicts (by project or repository)
+#### 4.1.6 Setup the scripts to resolve conflicts (by project or repository)
 
 - Go to SourceTree and select the new repository "BankInsight"
 - Go to the toolbar and clic the button "Terminal"
@@ -299,7 +299,7 @@ $ git config mergetool.keepBackup false
         keepBackup = false
 ```
 
-#### 7. Test a basic custom action from SourceTree
+#### 4.1.7 Test a basic custom action from SourceTree
 
 - Select the first commit (double clic).
 - Right mouse button, Custom Actions, Open RPD.
@@ -308,9 +308,9 @@ $ git config mergetool.keepBackup false
 - Close Admintool.
 - The SourceTree window for the custom action executed closes.
 
-### Example workflow with GitFlow
+### 4.2 Example workflow with GitFlow
 
-#### 1. The first feature
+#### 4.2.1 The first feature
 
 The idea is to use Git's own client, SourceTree, as much as possible. To start we will create a new feature by adding something simple, we will save it and close the new feature.
 
@@ -325,28 +325,32 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 - If you select now the created feature (from the sidebar) you will see the saved commit.
 - Now finish the feature, clic Git-Flow and select "Finish Feature" and clic Ok.
 
-#### 2. Two features in concurrent development
+#### 4.2.2 Two features in concurrent development
 
 This is the main reason why I use Git in OBIEE, not only for version control, but to work in parallel (concurrent development) with other developers in the same RPD. Let's see how it would work with several features at once:
 
-- Create the first feature and name it as "Table A"
-- Open the RPD from SourceTree with the custom action
-- Create TABLE_A with one column ID_PK
-- Save changes
-- Commit changes in SourceTree
-- Create the second feature (Git-flow > Other actions > Start New Feature) and name it as "Table B"
-- Open the RPD from SourceTree with the custom action
+- Create the first feature and name it as "Table A".
+- Open the RPD from SourceTree with the custom action.
+- Create TABLE_A with one column ID_PK.
+- Create two logical tables (Dim and Fact) with this table as source and set a new join.
+- Create the subject area and drag the new Dim and Fact.
+- Save changes.
+- Commit changes in SourceTree.
+- Create the second feature (Git-flow > Other actions > Start New Feature) and name it as "Table B".
+- Open the RPD from SourceTree with the custom action.
 - Every new feature start from the develop branch. Therefore, the previous TABLE_A does not exist in this new feature.
-- Create TABLE_B with one column ID_PK
-- Save changes
-- Commit changes in SourceTree
+- Create TABLE_B with one column ID_PK.
+- Create two logical tables (Dim and Fact) with this table as source and set a new join.
+- Create the subject area and drag the new Dim and Fact.
+- Save changes.
+- Commit changes in SourceTree.
 
 Now I have two different branches with their respective changes (TABLE_A and TABLE_B). In concurrent development we have two or more developers each working on a different change. Once one of them ends and it is ok, the next step is to integrate it into the development branch without interfering with what the other developer is doing. In this case, the first to integrate their changes in the development branch may do so automatically.
 
-- Select the branch "Table A" (double clic in the sidebar)
-- Clic "Git-flow" in the toolbar
-- Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table A"
-- Press Ok button
+- Select the branch "Table A" (double clic in the sidebar).
+- Clic "Git-flow" in the toolbar.
+- Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table A".
+- Press Ok button.
 
 The branch "Table A" has been integrated (and deleted) into the branch "develop". Now I can open the RPD with the custom action, review the changes and confirm the presence of the new "TABLE_A".
 
@@ -381,7 +385,7 @@ Normal merge conflict for 'BankInsight.rpd':
   {remote}: modified file
 ```
 
-The rest of the lines that appear in the terminal are the commands executed in the script that we have indicated in the configuration. If I check the project folder I will see that Git has returned 4 RPD files: BASE, LOCAL, REMOTE and BACKUP. These four files correspond to:
+Here Git tells us that it has detected a conflict between the "local" and the "remote" versions. The rest of the lines that appear in the terminal are the commands executed in the script that we have indicated in the configuration. If I check the project folder I will see that Git has returned 4 RPD files: BASE, LOCAL, REMOTE and BACKUP. Three of these files correspond to:
 
 | Admintool    | Git        |
 |--------------|------------|
@@ -391,4 +395,36 @@ The rest of the lines that appear in the terminal are the commands executed in t
 
 The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured. Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files.
 
-[This readme currently is on "work in progress"]
+- In the merge window, clic "Select > Repository" for the original master repository.
+- Select the "original.rpd" file and put the "Repository Password" for the original RPD.
+- Clic "Select > Repository" for the modified repository.
+- Select the "modified.rpd" file and put the "Repository Password" for the modified RPD.
+- Check the option "Equalize During Merge".
+- Clic "Next".
+- The "current(1).rpd" is created with the merged changes.
+
+The script that open the Admintool to do the merge process is still waiting until Admintool closes and finish executing the commands in the script:
+
+```
+C:\Users\btey\Documents\Git-Repos\BankInsight>C:\Oracle\Middleware\OracleBI12c_122130\domains\bi\bitools\bin\admintool.cmd /command Scripts\AdminToolMergeDEC.txt   && xcopy /Y C:\Temp-Merge\current(1).rpd BankInsight.rpd   0<Scripts\xcopy.txt  && del C:\Temp-Merge\*.rpd
+```
+
+The final process of the script copy the "current(1).rpd" file to "BankInsight.rpd" in the git repository path and clean the temp merge path. At the end of the script Git will ask you "Was the merge successful [y/n]?". Before confirming the answer, from SourceTree, open the RPD and check that the changes have been applied. Then clic "Commit" in the toolbar, change the comment if you need and confirm with the "Commit" button.
+
+Due to the previous conflict Git does not delete the branch "Table B", but if you try to finish the feature again now Git already knows that the conflict has been resolved and merged, so simply delete the feature and return to the "develop" branch. This is the output from git finish feature:
+
+```
+git flow feature finish Table_B
+Deleted branch feature/Table_B (was 7e7565f).
+
+Summary of actions:
+- The feature branch 'feature/Table_B' was merged into 'develop'
+
+- Feature branch 'feature/Table_B' has been locally deleted
+- You are now on branch 'develop'
+
+
+Completed successfully.
+```
+
+In the case that two developers make a change that implies a conflict in the merge process of the Admintool, simply follow the process to resolve it from Admintool. But from the Git / SourceTree perspective the actions to be carried out are the same.
