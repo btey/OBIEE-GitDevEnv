@@ -1,19 +1,13 @@
 # How To Run the Administration Tool and Administer Repositories in Automated Command Line
 
-
-
 ## 1. APPLIES TO
 
 Business Intelligence Server/Suite Enterprise Edition - Version 11.1.1.6.0 and later
 Information in this document applies to any platform.
 
-
-
 ## 2. PURPOSE
 
 This note describes how to run the Administration Tool in automated mode from the command line and lists the commands you can use to administer a repository.
-
-
 
 ## 3. DETAILS
 
@@ -25,15 +19,13 @@ AdminTool /Command commandFile
 
 where commandFile is full path to the text file containing batch of commands.
 
-
-
 ## 4. COMMANDS LIST
 
-##### 4.1 BusinessModelConsistencyCheck businessModelName [outputFileName]
+#### 4.1 BusinessModelConsistencyCheck businessModelName [outputFileName]
 
 Consistency check for one business model.
 
-##### 4.2 CheckinSubset ModifiedSubsetRepositoryName dummy password [decisionFile [{Yes|No}]]
+#### 4.2 CheckinSubset ModifiedSubsetRepositoryName dummy password [decisionFile [{Yes|No}]]
 
 Note: This command is obsolete and supported for backwards compatibility only. Use the RefreshSubset command instead.
 
@@ -45,15 +37,15 @@ Checks in the repository, defined in the ModifiedSubsetRepository parameter, int
 * The dummy parameter is obsolete and is required only for backwards compatibility.
 * The last parameter specifies whether "Equalize during merge" check box should be turned on. The default value is No.
 
-##### 4.3 ClearUserAndComputer
+#### 4.3 ClearUserAndComputer
 
 Ends the simulation forced by a previous call of the automated function SetUserAndComputer.
 
-##### 4.4 Close
+#### 4.4 Close
 
 Closes an open repository.
 
-##### 4.5 Compare FileName [password] [outputFile]
+#### 4.5 Compare FileName [password] [outputFile]
 
 Compares the current repository with another repository.
 
@@ -62,11 +54,11 @@ Compares the current repository with another repository.
 * If FileName does not include an extension, ".rpd" is assumed.
 * If outputFile is not specified, the execution stops and the user is prompted for it.
 
-##### 4.6 ConsistencyCheck [outputFileName]
+#### 4.6 ConsistencyCheck [outputFileName]
 
 Global consistency check.
 
-##### 4.7 CreatePatch FileName [dummy] password outputFile
+#### 4.7 CreatePatch FileName [dummy] password outputFile
 
 Create a diff-patch file by comparing the current repository with another repository.
 
@@ -81,7 +73,8 @@ open new_northwind.rpd
 createPatch original_northwind.rpd secret_password "C:\testdata\input\Modifications\Settings\Projects_users\patchfile.xml"
 ```
 
-##### 4.8 CreateSubset NewRepositoryName MasterRepositoryName numberOfProjects project1 [project2 [project3 [...] [dummy] repositoryPassword
+#### 4.8 CreateSubset NewRepositoryName MasterRepositoryName numberOfProjects project1 [project2 [project3 [...] [dummy] repositoryPassword
+
 Creates and opens a multi-user subset repository.
 
 * A new repository will be created in the repository directory, so you do not need to include a full path in NewRepositoryName.
@@ -89,13 +82,13 @@ Creates and opens a multi-user subset repository.
 * The parameter numberOfProjects should be set to a number greater than or equal to 1.
 * The dummy parameter is obsolete and allowed only for backwards compatibility.
 
-##### 4.9 DeleteObject ObjectType FullyQualifiedObjectName
+#### 4.9 DeleteObject ObjectType FullyQualifiedObjectName
 
 Deletes the specified object.
 
 Note: ObjectType can be either type name (as shown in Query Repository dialog) or type id (number) as defined in analytics\server\include\objectmodel\SOTypeID.h
 
-##### 4.10 DescribeRepository FullyQualifiedOutputFile Encoding
+#### 4.10 DescribeRepository FullyQualifiedOutputFile Encoding
 
 Writes to the file containing the description of a repository.
 
@@ -108,13 +101,13 @@ Writes to the file containing the description of a repository.
   * Unicode
   * UTF-8
 
-##### 4.11 Drag ObjectType FullyQualifiedObjectName
+#### 4.11 Drag ObjectType FullyQualifiedObjectName
 
 Adds the object specified in the parameter FullyQualifiedObjectName to any objects selected for the drag and drop action.
 
 Note: ObjectType can be either type name (as shown in Query Repository dialog) or type id (number) as defined in analytics\server\include\objectmodel\SOTypeID.h
 
-##### 4.12 Drop {Yes|No} ObjectType FullyQualifiedObjectName
+#### 4.12 Drop {Yes|No} ObjectType FullyQualifiedObjectName
 
 Drops the object(s) specified in previous Drag command(s) on the object specified.
 
@@ -122,7 +115,7 @@ Drops the object(s) specified in previous Drag command(s) on the object specifie
 
 Note: ObjectType can be either type name (as shown in Query Repository dialog) or type id (number) as defined in analytics\server\include\objectmodel\SOTypeID.h
 
-##### 4.13 Drop {Yes|No} {Presentation|"Business Model and Mapping"|Physical}
+#### 4.13 Drop {Yes|No} {Presentation|"Business Model and Mapping"|Physical}
 
 Drops the object(s) specified in previous Drag command(s) on the empty space of the view specified by second parameter.
 
@@ -131,7 +124,7 @@ Drops the object(s) specified in previous Drag command(s) on the empty space of 
   * Yes = copy
   * No = move
 
-##### 4.14 ExecuteQuery queryFile queryResultDirectory
+#### 4.14 ExecuteQuery queryFile queryResultDirectory
 
 Executes the queries defined in the file in the parameter queryFile. The query result(s) will be stored in the directory defined in the parameter queryResultDirectory. Each query has its own result file.
 
@@ -153,11 +146,11 @@ test3: Q1
 
 The result file name is the text before the ":" with ".txt" as file type. In the above example, "test1.txt" and "test2.txt" are the result file names for the corresponding test cases.
 
-##### 4.15 Exit
+#### 4.15 Exit
 
 Closes the Administration Tool.
 
-##### 4.16 ExternalizeStrings FullyQualifiedOutputFile Encoding [SubjectAreaName_1 [SubjectAreaName_2 [TargetLevelName_1]
+#### 4.16 ExternalizeStrings FullyQualifiedOutputFile Encoding [SubjectAreaName_1 [SubjectAreaName_2 [TargetLevelName_1]
 
 Writes to the file defined the parameter FullyQualifiedOutput File the description of the objects for externalization.
 
@@ -170,22 +163,22 @@ Writes to the file defined the parameter FullyQualifiedOutput File the descripti
   * Unicode
   * UTF-8
 
-##### 4.17 GenerateMetadataDictionary DictRootDirectory
+#### 4.17 GenerateMetadataDictionary DictRootDirectory
 
 Generates the meta data dictionary.
 
 * The parameter DictRootDirectory holds the directory in which to save the dictionary files.
 
-##### 4.18 GenerateQueryTestCases outputFile [random_seed]
+#### 4.18 GenerateQueryTestCases outputFile [random_seed]
 
 Generates some basic test cases for the query repository feature.
 
-##### 4.19 Hide
+#### 4.19 Hide
 
 Hides the Administration Tool.
 
-##### 4.20 ImportDB {Yes|No} {"OracleWS"|"Siebel OM"|"OracleADF_HTTP"|"OCI 10g/11g"|"ODBC 
-2.0"|"ODBC 3.5"|"DB2 CLI (Unicode)"|XML|XMLA|AW} other_params
+#### 4.20 ImportDB {Yes|No} {"OracleWS"|"Siebel OM"|"OracleADF_HTTP"|"OCI 10g/11g"|"ODBC 2.0"|"ODBC 3.5"|"DB2 CLI (Unicode)"|XML|XMLA|AW} other_params
+
 Initiates an import from the database.
 
 * The first parameter determines whether it is an import from server (Yes) or local (No). At the moment, only local mode is supported.
@@ -209,7 +202,7 @@ Initiates an import from the database.
 * The default XSLT and XPathExpression are empty.
 * The default Siebel Tables flag is No.
 
-###### EssBase DB options:
+##### EssBase DB options:
 
 * NoUDAs Do not import UDAs, default is to import UDAs.
 * ToFlatMeasures Convert measure dimension to flat measures.
@@ -219,7 +212,7 @@ Initiates an import from the database.
 
 Note: DB2 CLI Import is case-sensitive and so may be other import types
 
-##### 4.21 ImportDBExecute {Yes|No} {Yes|No}
+#### 4.21 ImportDBExecute {Yes|No} {Yes|No}
 
 Executes the repository import defined by previous calls to ImportDB and ImportDBObject.
 
@@ -227,9 +220,8 @@ Executes the repository import defined by previous calls to ImportDB and ImportD
   * The first parameter determines whether it will import joined objects (Yes) or not (No). The default value is Yes.
   * The second parameter determines whether to go to the map to logical page for ADF extender (Yes) or not (No). The default value is No.
 
-##### 4.22 ImportDBObject {Database|"Physical Catalog"|"Physical Schema"|"Physical 
-Table"|"Physical Column"|"Physical Cube Table"|"Analytic Workspace"} 
-list_of_names
+#### 4.22 ImportDBObject {Database|"Physical Catalog"|"Physical Schema"|"Physical Table"|"Physical Column"|"Physical Cube Table"|"Analytic Workspace"} list_of_names
+
 Imports an object from the database (including all its children).
 
 * The list_of_names parameter can be 0 to n names listed, from the name of a catalog down to the name of a column.
@@ -250,7 +242,7 @@ Examples of usage:
   ImportDBObject "Physical Cube Table" "XXXXXXX"  Budget
   ```
 
-##### 4.23 ImportDBSetTableType number
+#### 4.23 ImportDBSetTableType number
 
 Sets the table type for import from the database.
 
@@ -265,7 +257,7 @@ Sets the table type for import from the database.
 * If you do not call this function, the table type is set to 1 by default.
 * This is not used for an XMLA import.
 
-##### 4.24 ImportDBSetKeyImportType number
+#### 4.24 ImportDBSetKeyImportType number
 
 Set the key type for import from the database.
 
@@ -277,7 +269,7 @@ Set the key type for import from the database.
 * If you do not call this function, the table type is set to 3 by default.
 * This is not used for an XMLA import.
 
-##### 4.25 ImportRepository {Online|Offline} {FileName|DSNname} [user [password]]
+#### 4.25 ImportRepository {Online|Offline} {FileName|DSNname} [user [password]]
 
 Initiates an import from another repository.
 
@@ -285,11 +277,11 @@ Initiates an import from another repository.
 * The default value of user is 'Administrator'.
 * The default value of password is null.
 
-##### 4.26 ImportRepositoryExecute
+#### 4.26 ImportRepositoryExecute
 
 Executes the repository import defined by preceding calls to ImportRepository and ImportRepositoryObject.
 
-##### 4.27 ImportRepositoryObject {Project|"Presentation Catalog"|User|"Security Group"|Variable} {Name|*} [True|False [True|False]]
+#### 4.27 ImportRepositoryObject {Project|"Presentation Catalog"|User|"Security Group"|Variable} {Name|*} [True|False [True|False]]
 
 Imports object(s) from another repository.
 
@@ -297,7 +289,7 @@ Imports object(s) from another repository.
 * The boolean (true/false) parameters are: parent, children.
 * The default value for both is False.
 
-##### 4.28 LinkToSourceControl path/to/MDS-XML-Repo path/to/SCM-config.xml
+#### 4.28 LinkToSourceControl path/to/MDS-XML-Repo path/to/SCM-config.xml
 
 This command makes the Administration tool associate the repository objects in memory with the MDS XML repository specified. It also puts this repository under source control using the provided SCM configuration file.  It is as if the memory objects always belonged to the MDS XML repository and are just waiting to be saved. In other words, using the Save command after a LinkToSourceControl command has the effect of delivering the memory objects to source control using the SCM commands defined in the configuration file.
 
@@ -311,7 +303,7 @@ Save
 
 Repository objects defined in "demo.rpd" will be delivered to the MDS XML repository "C:\DEMO" using source control commands defined in "ade-conf.xml".
 
-##### 4.29 Merge FileName1 FileName2 [DecisionFile] [dummy] password1 [dummy] password2 [{Yes|No}] [resultingFileName]
+#### 4.29 Merge FileName1 FileName2 [DecisionFile] [dummy] password1 [dummy] password2 [{Yes|No}] [resultingFileName]
 
 Merges three repositories into one.
 
@@ -328,27 +320,27 @@ Merges three repositories into one.
 * The dummy parameters are not used and allowed only for backwards compatibility.
 * If the dummy parameters are specified, DecisionFile must be specified as well.
 
-##### 4.30 MessageBox [message]
+#### 4.30 MessageBox [message]
 
 Displays the message box with the text given in the message parameter.
 
 * The default values of message is "Siebel Analytics Administration Tool".
 
-##### 4.31 MudCheckoutWholeRpd NewRepositoryName MasterRepositoryName repositoryPassword
+#### 4.31 MudCheckoutWholeRpd NewRepositoryName MasterRepositoryName repositoryPassword
 
 Creates a whole repository multi-user checkout.
 
 * The new repository will be created in the repository directory, so you do not have to include the full path to it.
 * The master repository must be in the multi-user development directory, so the MasterRepositoryName parameter does not have to include the full path.
 
-##### 4.32 New FileName [repositoryPassword]
+#### 4.32 New FileName [repositoryPassword]
 
 Creates a new repository in offline mode.
 
 * If the repository file is created in the repository directory, then the FileName parameter does not need to include the full path.
 * If FileName does not include the file extension, ".rpd" is appended.
 
-##### 4.33 OpenOffline Name [repositoryPassword]
+#### 4.33 OpenOffline Name [repositoryPassword]
 
 Opens the repository in offline mode.
 
@@ -356,11 +348,11 @@ Opens the repository in offline mode.
 * If Name is a repository file which is in the repository directory or the directory of the commandFile, you do not have to include the full path to it.
 * If Name is a repository file, but without the extension, ".rpd" is assumed as the extension.
 
-##### 4.34 OpenOnline DSN user password repositoryPassword
+#### 4.34 OpenOnline DSN user password repositoryPassword
 
 It opens the repository in online mode.
 
-##### 4.35 Open FileName dummyParameter repositoryPassword
+#### 4.35 Open FileName dummyParameter repositoryPassword
 
 Note: this command is obsolete and supported only for backwards compatibility. Use the OpenOffline command instead.
 
@@ -371,7 +363,7 @@ It opens the repository in offline mode.
 * dummyParameter is not used, except it has to be specified if you want to use repositoryPassword parameter.
 * The default repositoryPassword is null.
 
-##### 4.36 Patch FileName1 FileName2 [DecisionFile] [dummy] password1 [password2 equalize [dummy dummy] [dummy dummy dummy]] 
+#### 4.36 Patch FileName1 FileName2 [DecisionFile] [dummy] password1 [password2 equalize [dummy dummy] [dummy dummy dummy]] 
 
 Apply the patch and merge the repositories into one.
 
@@ -395,73 +387,71 @@ open customer_test.rpd
 patch "C:\testdata\input\Modifications\Settings\Projects_users\patchfile.xml" original_test.rpd decision_modified.csv secret Yes "" "" ""
 ```
 
-##### 4.37 Publish [LockUserFullName]
+#### 4.37 Publish [LockUserFullName]
 
 MUD publish functionality.
 
 * LockUserFullName is the full name of the user locking the Master repository.
 
-##### 4.38 RefreshSubset password [decisionFile [{Yes|No}]]
+#### 4.38 RefreshSubset password [decisionFile [{Yes|No}]]
 
 Refreshes an already open subset repository with the latest changes from Master repository.
 
 * The last parameter specifies whether "Equalize during merge" check box should be turned on.  The default value is No.
 
-##### 4.39 Save
+#### 4.39 Save
 
 Saves an open repository.
 
-##### 4.40 SaveAs FileName
+#### 4.40 SaveAs FileName
 
 Saves an oped repository under a new name.
 
 * If FileName does not include a path,the directory of commandFile is used.
 
-##### 4.41 SaveAsMdsXml DirectoryName
+#### 4.41 SaveAsMdsXml DirectoryName
 
 * Saves an open repository as MDS XML documents in the directory specified by DirectoryName.
 
-##### 4.42 SetAutoConnectionPool fqName
+#### 4.42 SetAutoConnectionPool fqName
 
 Sets the connection pool to be used automatically with the following calls: UpdatePhysical, UpdateRowCount, SyncUsingConnectionPool and ViewData.
 
 * The fqName parameter is the fully qualified name of the connection pool.
 
-##### 4.43 SetIcon ObjectType FullyQualifiedObjectName IconNumber
+#### 4.43 SetIcon ObjectType FullyQualifiedObjectName IconNumber
 
 Sets the icon of the specified object. Use 0 to remove the icon.
 
 Note: ObjectType can be either type name (as shown in Query Repository dialog) or type id (number) as defined in analytics\server\include\objectmodel\SOTypeID.h
 
-##### 4.44 SetMUDPath [dir]
+#### 4.44 SetMUDPath [dir]
 
 Sets the Multiuser Development Directory (as specified in the user interface under the Tools/Options/Multiuser menu item).
 
 * If the dir parameter is omitted, an empty path is set (i.e. no multi-user development).
 * If the dir parameter contains a space, it has to be enclosed in double quotes.
 
-##### 4.45 SetProperty ObjectType FullyQualifiedObjectName PropertyName PropertyValue
+#### 4.45 SetProperty ObjectType FullyQualifiedObjectName PropertyName PropertyValue
 
 Sets the property of object to the specified value.
 
 * It currently works only for connection pool (properties "DSN", "User", "Password" or "CallInterface"), variable (property "Initializer"), database (property "Database"), project (properties "AddPresentationObject" and "RemovePresentationObject") and initialization block (property "Disabled").
-* For a connection pool's CallInterface property, use Default for the Default CLI interface. Do not use anything in the brackets. The AdministrationTool will automatically recalculate what is the default 
-  value.
-* The PropertyValue for properties "AddPresentationObject" and "RemovePresentationObject" is VoidID of the object to be added to, or removed from, the presentation objects. PropertyValue for the property 
-  Disabled is either Yes or No.
+* For a connection pool's CallInterface property, use Default for the Default CLI interface. Do not use anything in the brackets. The AdministrationTool will automatically recalculate what is the default value.
+* The PropertyValue for properties "AddPresentationObject" and "RemovePresentationObject" is VoidID of the object to be added to, or removed from, the presentation objects. PropertyValue for the property Disabled is either Yes or No.
 
 Note: ObjectType can be either type name (as shown in Query Repository dialog) or type id (number) as defined in analytics\server\include\objectmodel\SOTypeID.h
 
-##### 4.46 SetRowCountFile outputFileName
+#### 4.46 SetRowCountFile outputFileName
 
 * Sets the file to which the log for calls of UpdateRowCount is written.
 * The repository must be open when you call this command.
 
-##### 4.47 SetUserAndComputer userName computerName
+#### 4.47 SetUserAndComputer userName computerName
 
 Simulates the situation as if the MUD function was performed on a different computer with a different user log in.
 
-##### 4.48 SyncUsingConnectionPool {Yes|No} {Yes|No}
+#### 4.48 SyncUsingConnectionPool {Yes|No} {Yes|No}
 
 This command works for ADF databases only.
 
@@ -469,7 +459,7 @@ This command works for ADF databases only.
 * The second parameter determines whether to go to the map to logical 
   page for ADF extender (Yes) or not (No). The default value is No.
 
-##### 4.49 TestExtender {ADF|Essbase} DBXUDMLFileName
+#### 4.49 TestExtender {ADF|Essbase} DBXUDMLFileName
 
 This automation command is used to simulate the ADF or Essbase import by executing the database XUDML. It then tests the Extender functionality of mapping the Physical objects to Logical layer and then to 
 Presentation Layer.
@@ -478,23 +468,22 @@ Presentation Layer.
 * The second parameter specifies the path to the XUDML file which 
   needs to executed to simulate the import of the physical objects.
 
-##### 4.50 TestInitBlock initBlockName FullyQualifiedOutputFile Encoding
+#### 4.50 TestInitBlock initBlockName FullyQualifiedOutputFile Encoding
 
 Tests the connection to the specified init block.
 
 * The results are written to the file specified in the FullyQualifiedOutputFile parameter.
-
 * Encoding has three options:
 
   ​	ANSI
   ​	Unicode
   ​	UTF-8
 
-##### 4.51 TestLdapServer ldapServerName outputFileName
+#### 4.51 TestLdapServer ldapServerName outputFileName
 
 Tests the connection to the LDAP server and writes the result to the file specified in outputFileName.
 
-##### 4.52 UpdatePhysical [Database [ConnectionPool]]
+#### 4.52 UpdatePhysical [Database [ConnectionPool]]
 
 Updates the physical layer.
 
@@ -502,13 +491,13 @@ Updates the physical layer.
 * The ConnectionPool parameter is necessary only if the specified Database contains more than one connection pool.
 * The database parameter is necessary only if the repository contains more than one database.
 
-##### 4.53 UpdateRowCount ["Physical Column"|"Physical Table"] fqName
+#### 4.53 UpdateRowCount ["Physical Column"|"Physical Table"] fqName
 
 Updates the row count for the specified item.
 
 * The parameter, fqName, is the fully qualified name of the object.
 
-##### 4.54 ViewData fqTableName [columnName_1 [columnName_2 ...[columnName_n]]]
+#### 4.54 ViewData fqTableName [columnName_1 [columnName_2 ...[columnName_n]]]
 
 View the data in the database.
 
