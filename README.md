@@ -387,7 +387,7 @@ The next steep is integrate the branch "Table B" into the branch "develop". The 
 
 SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see "(develop|MERGING)". This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
 
-The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict:
+The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict use the custom action "Resolve Merge" or use the terminal to execute the same command:
 
 - Clic "Terminal" button in the toolbar
 - In the terminal window put the command:
@@ -396,7 +396,7 @@ The conflict must be resolved with the Admintool using the three way merge. For 
 $ git mergetool
 ```
 
-We are telling Git to give us the necessary files to resolve the conflict and execute the script that we have indicated in the configuration. The terminal window show this:
+With this command we are telling Git to give us the necessary files to resolve the conflict and execute the script that we have indicated in the configuration. The output window or the terminal window show this:
 
 ```
 btey@BTEY10 MINGW64 ~/Documents/Git-Repos/BankInsight (develop|MERGING)
@@ -452,3 +452,12 @@ Completed successfully.
 ```
 
 In the case that two developers make a change that implies a conflict in the merge process of the Admintool, simply follow the process to resolve it from Admintool. But from the Git / SourceTree perspective the actions to be carried out are the same.
+
+##### 4.2.2.1 Using the automatic merge option
+
+When SourceTree detects a conflict and change the status to "merging" to resolve the conflict, if you want can use a more automatic option using the custom action "Resolve Merge (Auto)". The difference between the tho options are:
+
+* (No Auto) The script open the "current.rpd" only and let the user select the "original" and "modified" RPDs. Then manualy launch the merge process. In this case, if the merge process detect a conflict, it will show you in the decisions window. Here you can manually set to use for every conflict if yo want the modified or current version.
+* (Auto) The script open the "current.rpd" and execute the merge process passing by parameter the name of the modified and original rpd files. When the merge command is used the decision step, in case of conflict, is set to default and the criteria with the property or object in conflict is:
+	 * modified = original ? then apply current version
+	 * modified <> original ? then mantain modified version and reject current version
