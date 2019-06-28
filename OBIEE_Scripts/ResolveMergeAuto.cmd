@@ -1,0 +1,1 @@
+git mergetool --tool=Auto
