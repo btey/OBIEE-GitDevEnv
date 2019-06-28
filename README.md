@@ -46,6 +46,8 @@ On your private git server create a new repository where you save all the script
 * Release Notes (All)
 * Release Notes (All details)
 * Release Notes (Latest tag)
+* Resolve Merge
+* Resolve Merge (Auto)
 * Upload RPD
 
 ### 3.3 Setup environment variables
@@ -190,7 +192,29 @@ Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ReleaseNotesLastestTag.cmd
 Parameters:
 ```
 
-#### 3.4.12 Upload RPD
+#### 3.4.12 Resolve Merge
+
+```
+Menu Caption: Resolve Merge
+	[ ]	Open in a separate window
+	[ ]	Show Full Output
+	[x]	Run command silently
+Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ResolveMerge.cmd
+Parameters:
+```
+
+#### 3.4.13 Resolve Merge (Auto)
+
+```
+Menu Caption: Resolve Merge (Auto)
+	[ ]	Open in a separate window
+	[ ]	Show Full Output
+	[x]	Run command silently
+Script to run: C:\Git-Repos\OBIEE_Scripts\Scripts\ResolveMergeAuto.cmd
+Parameters:
+```
+
+#### 3.4.14 Upload RPD
 
 ```
 Menu Caption: Upload RPD
