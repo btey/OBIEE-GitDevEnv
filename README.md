@@ -385,7 +385,7 @@ The next steep is integrate the branch "Table B" into the branch "develop". The 
 - Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table B"
 - Press Ok button
 
-SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see "(develop|MERGING)". This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
+SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see ```(develop|MERGING)```. This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
 
 The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict use the custom action "Resolve Merge" or use the terminal to execute the same command:
 
