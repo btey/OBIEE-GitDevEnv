@@ -416,18 +416,41 @@ Now I have two different branches with their respective changes (Table A and Tab
 - Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table A".
 - Press Ok button.
 
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.3.png?raw=true" alt="Feature Table A selected"/>
+</p>
+
 The branch "Table A" has been integrated (and deleted) into the branch "develop". Now I can open the RPD with the custom action, review the changes and confirm the presence of the new "Table A".
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.4.png?raw=true" alt="Table A integrated in develop branch"/>
+</p>
 
 The next steep is integrate the branch "Table B" into the branch "develop". The process is the same, double clic into the branch "Table B" (from the sidebar), clic "Git-flow" (from the toolbar) and select the option "Finish Feature" and confirm with Ok. But the git merge process knows that before there has been a previous merge commit that should not be lost. If the RPD was a plain text file Git could see the difference and if it does not find conflicts do the merge automatically. But the RPD is a binary. In this case, Git will tell us that there is a conflict that must be resolved.
 
 - Select the branch "Table B" (double clic in the sidebar)
 - Clic "Git-flow" in the toolbar
 - Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table B"
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.5.png?raw=true" alt="Finishing feature Table B"/>
+</p>
+
 - Press Ok button
 
-SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see ```(develop|MERGING)```. This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.6.png?raw=true" alt="Merge conflict alert"/>
+</p>
 
-The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict use the custom action "Resolve Merge" or use the terminal to execute the same command:
+SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.7.png?raw=true" alt="Uncommitted changes in the merge status"/>
+</p>
+
+You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see ```(develop|MERGING)```. This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
+
+The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the merge process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict use the custom action "Resolve Merge" or use the terminal to execute the same command:
 
 - Clic "Terminal" button in the toolbar
 - In the terminal window put the command:
@@ -449,7 +472,13 @@ Normal merge conflict for 'BankInsight.rpd':
   {remote}: modified file
 ```
 
-Here Git tells us that it has detected a conflict between the "local" and the "remote" versions. The rest of the lines that appear in the terminal are the commands executed in the script that we have indicated in the configuration. If I check the project folder I will see that Git has returned 4 RPD files: BASE, LOCAL, REMOTE and BACKUP. Three of these files correspond to:
+Here Git tells us that it has detected a conflict between the "local" and the "remote" versions. The rest of the lines that appear in the terminal are the commands executed in the script that we have indicated in the configuration. If I check the project folder I will see that Git has returned 4 RPD files: BASE, LOCAL, REMOTE and BACKUP.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.9.png?raw=true" alt="RPD files returned by Git for the merge process"/>
+</p>
+
+Three of these files correspond to:
 
 | Admintool    | Git        |
 |--------------|------------|
@@ -457,7 +486,13 @@ Here Git tells us that it has detected a conflict between the "local" and the "r
 | modified RPD | LOCAL.rpd  |
 | current  RPD | REMOTE.rpd |
 
-The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured. Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files:
+The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.10.png?raw=true" alt="RPD files copied to Temp-Merge"/>
+</p>
+
+Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files:
 
 - In the merge window, clic "Select > Repository" for the original master repository.
 - Select the "original.rpd" file and put the "Repository Password" for the original RPD.
@@ -473,7 +508,13 @@ The script that open the Admintool to do the merge process is still waiting unti
 C:\Users\btey\Documents\Git-Repos\BankInsight>C:\Oracle\Middleware\OracleBI12c_122130\domains\bi\bitools\bin\admintool.cmd /command Scripts\AdminToolMergeDEC.txt   && xcopy /Y C:\Temp-Merge\current(1).rpd BankInsight.rpd   0<Scripts\xcopy.txt  && del C:\Temp-Merge\*.rpd
 ```
 
-The final process of the script copy the "current(1).rpd" file to "BankInsight.rpd" in the git repository path and clean the temp merge path. At the end of the script Git will ask you "Was the merge successful [y/n]?". Before confirming the answer, from SourceTree, open the RPD and check that the changes have been applied. Then clic "Commit" in the toolbar, change the comment if you need and confirm with the "Commit" button.
+The final process of the script copy the "current(1).rpd" file to "BankInsight.rpd" in the git repository path and clean the temp merge path. At the end of the script Git will ask you "Was the merge successful [y/n]?". Before confirming the answer, from SourceTree, open the RPD and check that the changes have been applied.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.12.png?raw=true" alt="Verify the changes before commit"/>
+</p>
+
+Then clic "Commit" in the toolbar, change the comment if you need and confirm with the "Commit" button.
 
 Due to the previous conflict Git does not delete the branch "Table B", but if you try to finish the feature again now Git already knows that the conflict has been resolved and merged, so simply delete the feature and return to the "develop" branch. This is the output from git finish feature:
 
