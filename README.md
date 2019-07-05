@@ -67,6 +67,10 @@ Then add the following variables:
 | OBIEE_GIT_REPOS   | C:\Git-Repos                            | Path of the git repositories   |
 | OBIEE_SERVER      | 192.168.56.103                          | OBIEE Server IP (your sandbox) |
 
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/EnvVariables.png?raw=true" alt="Environment Variables"/>
+</p>
+
 ### 3.4 Setup custom actions for use with SourceTree
 
 The above scripts must be added as custom actions inside SourceTree. Follow these steps for each script and go to Tools > Options > Custom Actions. From there we will create the following actions:
@@ -342,8 +346,18 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 
 - From SourceTree, clic Git-flow and select the option "Start New Feature".
 - Set the feature name, for example, "New DB and connection pool" and clic Ok.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-1.0.png?raw=true" alt="Creating the first feature"/>
+</p>
+
 - Select the latest commit and open the RPD with the custom action.
 - From Admintool, create a new database and connection pool for general queries and other for initblocks.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-1.1.png?raw=true" alt="New DB and connection pools"/>
+</p>
+
 - Save changes and close Admintool.
 - From SourceTree, now appear an uncommit change.
 - Select this uncommit line, stage the RPD, and clic "Commit" from the toolbar.
@@ -351,7 +365,15 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 - If you select now the created feature (from the sidebar) you will see the saved commit.
 - Now finish the feature, clic Git-Flow and select "Finish Feature" and clic Ok.
 
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-1.2.png?raw=true" alt="Finishing feature"/>
+</p>
+
 The first feature changes are now integrated into the "develop" branch.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-1.3.png?raw=true" alt="The new changes now are integrated into develop branch"/>
+</p>
 
 #### 4.2.2 Two features in concurrent development
 
@@ -360,6 +382,11 @@ This is the main reason why I use Git in OBIEE, not only for version control, bu
 - Create the first feature and name it as "Table A".
 - Open the RPD from SourceTree with the custom action.
 - Create TABLE_A with one column ID_PK.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.0.png?raw=true" alt="New Table A"/>
+</p>
+
 - Create two logical tables (Dim and Fact) with this table as source and set a new join.
 - Create the subject area and drag the new Dim and Fact.
 - Save changes.
@@ -368,10 +395,19 @@ This is the main reason why I use Git in OBIEE, not only for version control, bu
 - Open the RPD from SourceTree with the custom action.
 - Every new feature start from the develop branch. Therefore, the previous TABLE_A does not exist in this new feature.
 - Create TABLE_B with one column ID_PK.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.1.png?raw=true" alt="New Table B"/>
+</p>
+
 - Create two logical tables (Dim and Fact) with this table as source and set a new join.
 - Create the subject area and drag the new Dim and Fact.
 - Save changes.
 - Commit changes in SourceTree.
+
+<p align="center">
+  <img src="https://github.com/btey/OBIEE-GitDevEnv/blob/master/docs/images/Feature-2.2.png?raw=true" alt="Two features in SourceTree"/>
+</p>
 
 Now I have two different branches with their respective changes (Table A and Table B). In concurrent development we have two or more developers each working on a different change or feature. Once one of them ends and it is ok, the next step is to integrate it into the development branch without interfering with what the other developer is doing. In this case, the first to integrate their changes in the development branch may do so automatically.
 
