@@ -311,6 +311,8 @@ $ git config mergetool.keepBackup false
 - Check the changes in the git config file:
 
 ```
+$ less .git/config
+...
 [merge]
         tool = AdminTool
 [mergetool "AdminTool"]
@@ -345,9 +347,11 @@ The idea is to use Git's own client, SourceTree, as much as possible. To start w
 - Save changes and close Admintool.
 - From SourceTree, now appear an uncommit change.
 - Select this uncommit line, stage the RPD, and clic "Commit" from the toolbar.
-- Put a comment for this commit and clic commit.
+- Put a comment and clic commit.
 - If you select now the created feature (from the sidebar) you will see the saved commit.
 - Now finish the feature, clic Git-Flow and select "Finish Feature" and clic Ok.
+
+The first feature changes are now integrated into the "develop" branch.
 
 #### 4.2.2 Two features in concurrent development
 
@@ -369,14 +373,14 @@ This is the main reason why I use Git in OBIEE, not only for version control, bu
 - Save changes.
 - Commit changes in SourceTree.
 
-Now I have two different branches with their respective changes (TABLE_A and TABLE_B). In concurrent development we have two or more developers each working on a different change. Once one of them ends and it is ok, the next step is to integrate it into the development branch without interfering with what the other developer is doing. In this case, the first to integrate their changes in the development branch may do so automatically.
+Now I have two different branches with their respective changes (Table A and Table B). In concurrent development we have two or more developers each working on a different change or feature. Once one of them ends and it is ok, the next step is to integrate it into the development branch without interfering with what the other developer is doing. In this case, the first to integrate their changes in the development branch may do so automatically.
 
 - Select the branch "Table A" (double clic in the sidebar).
 - Clic "Git-flow" in the toolbar.
 - Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table A".
 - Press Ok button.
 
-The branch "Table A" has been integrated (and deleted) into the branch "develop". Now I can open the RPD with the custom action, review the changes and confirm the presence of the new "TABLE_A".
+The branch "Table A" has been integrated (and deleted) into the branch "develop". Now I can open the RPD with the custom action, review the changes and confirm the presence of the new "Table A".
 
 The next steep is integrate the branch "Table B" into the branch "develop". The process is the same, double clic into the branch "Table B" (from the sidebar), clic "Git-flow" (from the toolbar) and select the option "Finish Feature" and confirm with Ok. But the git merge process knows that before there has been a previous merge commit that should not be lost. If the RPD was a plain text file Git could see the difference and if it does not find conflicts do the merge automatically. But the RPD is a binary. In this case, Git will tell us that there is a conflict that must be resolved.
 
@@ -385,7 +389,7 @@ The next steep is integrate the branch "Table B" into the branch "develop". The 
 - Select the option "Finish Feature" and verify that the "Feature Name" selected is "Table B"
 - Press Ok button
 
-SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see ```(develop/MERGING)```. This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
+SourceTree will return an alert message indicating that there is a conflict and should be resolved. If I check the list of commits, I'll see that I have pending changes related to the merge. You can confirm the "merge" status with button "Terminal" in the toolbar. When the terminal window is open you will see ```(develop|MERGING)```. This indicates that we are in the "develop" branch in the process of merging, but first we must resolve the conflict before making a commit with the changes.
 
 The conflict must be resolved with the Admintool using the three way merge. For Git this process is the most normal and will give us exactly the files that we need for the fusion process with the Admintool. In previous steps (#6) we have configured Git so that in case of conflict use the tool that we indicated to solve it, instead of the own tools. To launch the process to resolve the conflict use the custom action "Resolve Merge" or use the terminal to execute the same command:
 
@@ -417,7 +421,7 @@ Here Git tells us that it has detected a conflict between the "local" and the "r
 | modified RPD | LOCAL.rpd  |
 | current  RPD | REMOTE.rpd |
 
-The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured. Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files.
+The custom script for the merge automatically copies these files that Git gives us and put in the folder "Temp-Merge" that we have configured. Then open the Admintool selecting the file "current.rpd" so that we only have to go to the option "File > Merge" and select the "original" and the "modified" RPD files:
 
 - In the merge window, clic "Select > Repository" for the original master repository.
 - Select the "original.rpd" file and put the "Repository Password" for the original RPD.
@@ -455,9 +459,9 @@ In the case that two developers make a change that implies a conflict in the mer
 
 ##### 4.2.2.1 Using the automatic merge option
 
-When SourceTree detects a conflict and change the status to "merging" to resolve the conflict, if you want can use a more automatic option using the custom action "Resolve Merge (Auto)". The difference between the tho options are:
+When SourceTree detects a conflict and change the status to "merging" to resolve the conflict, if you want can use a more automatic option using the custom action "Resolve Merge (Auto)". The difference between the two options are:
 
-* (No Auto) The script open the "current.rpd" only and let the user select the "original" and "modified" RPDs. Then manualy launch the merge process. In this case, if the merge process detect a conflict, it will show you in the decisions window. Here you can manually set to use for every conflict if yo want the modified or current version.
+* (No Auto) The script open the "current.rpd" only and let the user select the "original" and "modified" RPDs. Then manualy launch the merge process. In this case, if the merge process detect a conflict, it will show you in the decisions window. Here you can manually set for every conflict the modified or current version.
 * (Auto) The script open the "current.rpd" and execute the merge process passing by parameter the name of the modified and original rpd files. When the merge command is used the decision step, in case of conflict, is set to default and the criteria with the property or object in conflict is:
 	 * modified = original ? then apply current version
 	 * modified <> original ? then mantain modified version and reject current version
